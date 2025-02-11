@@ -78,16 +78,13 @@ print(gray_squirrel_count)
 print(cinnamon_squirrel_count)
 print(black_squirrel_count)
 
-# squirrel_dict = {
-#     'Fur Color':['Grey', 'Cinnamon', 'Black'],
-#     'Count':[gray_squirrel_count, cinnamon_squirrel_count, black_squirrel_count]
-# }
+squirrel_dict = {
+    'Fur Color':['Grey', 'Cinnamon', 'Black'],
+    'Count':[gray_squirrel_count, cinnamon_squirrel_count, black_squirrel_count]
+}
 
-# sq_df = pandas.DataFrame(squirrel_dict)
-# sq_df.to_csv("color_count.csv")
+sq_df = pandas.DataFrame(squirrel_dict)
+sq_df.to_csv("color_count.csv")
 
-color_count = squirrel_data['Primary Fur Color'].value_counts()
+# color_count = squirrel_data['Primary Fur Color'].value_counts()
 
-color = pandas.DataFrame(color_count)
-
-color.to_csv('color_count_2.csv')
