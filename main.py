@@ -30,6 +30,12 @@ all_states = states_data['state']
 states_list = all_states.to_list()
 
 present = states_data[states_data['state'] == user_answer]
-print(present.x.iloc[0])
+
+while correct != 50: 
+    if present: 
+        pen = turtle.Turtle()
+        pen.hideturtle() 
+        pen.penup()
+        pen.goto()
 
 screen.exitonclick()
