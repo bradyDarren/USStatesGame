@@ -11,7 +11,6 @@ screen.addshape(blank_states)
 
 turtle.shape(blank_states)
 correct = 0 
-user_answer = screen.textinput(title=f'Guess the state: {correct}/50', prompt="Input any name of the 50 U.S. States:")
 
 # # finds the coordinates of the mouse when it is clicked
 # def get_mouse_click_coor(x,y):
@@ -20,8 +19,6 @@ user_answer = screen.textinput(title=f'Guess the state: {correct}/50', prompt="I
 # turtle.onscreenclick(get_mouse_click_coor)
 # turtle.mainloop()
 
-user_answer = input('Input any name of the 50 U.S. States:')
-
 # importing our csv file. 
 states_data = pandas.read_csv('50_states.csv')
 
@@ -29,13 +26,24 @@ states_data = pandas.read_csv('50_states.csv')
 all_states = states_data['state']
 states_list = all_states.to_list()
 
-present = states_data[states_data['state'] == user_answer]
+present = states_data['state'] # data types is DataFrame
+states_list = present.to_list()
+guessed_states = []
 
-while correct != 50: 
-    if present: 
+while correct != 50:
+    user_answer = screen.textinput(title=f'Guess the state: {correct}/50', prompt="Input any name of the 50 U.S. States:").title().strip()
+
+    if user_answer == 'Exit':
+        break
+
+    if user_answer in states_list and user_answer not in guessed_states: 
         pen = turtle.Turtle()
         pen.hideturtle() 
         pen.penup()
-        pen.goto()
-
-screen.exitonclick()
+        state_data = states_data[states_data['state']== user_answer]
+        pen.goto(int(state_data['x']), int(state_data['y']))
+        pen.pendown()
+        pen.color('black')
+        pen.write(user_answer)
+        correct += 1
+        guessed_states.append(user_answer)
