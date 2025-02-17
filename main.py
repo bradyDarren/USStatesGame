@@ -26,8 +26,6 @@ states_data = pandas.read_csv('50_states.csv')
 all_states = states_data['state']
 states_list = all_states.to_list()
 
-present = states_data['state'] # data types is DataFrame
-states_list = present.to_list()
 guessed_states = []
 
 while correct != 50:
@@ -47,3 +45,11 @@ while correct != 50:
         pen.write(user_answer)
         correct += 1
         guessed_states.append(user_answer)
+    
+missed_states = []
+
+for state in states_list: 
+    if state not in guessed_states:
+       missed_states.append(state)
+data = pandas.DataFrame(missed_states)
+data.to_csv('missed_states.csv')
