@@ -32,11 +32,11 @@ while correct != 50:
     user_answer = screen.textinput(title=f'Guess the state: {correct}/50', prompt="Input any name of the 50 U.S. States:").title().strip()
 
     if user_answer == 'Exit':
-        missed_states = []
-        # missed_states = [state for state in states_list if state not in guessed_states]
-        for state in states_list: 
-            if state not in guessed_states:
-                missed_states.append(state)
+        # missed_states = []
+        missed_states = [state for state in states_list if state not in guessed_states]
+        # for state in states_list: 
+        #     if state not in guessed_states:
+        #         missed_states.append(state)
         data = pandas.DataFrame(missed_states)
         data.to_csv('missed_states.csv')
         break
